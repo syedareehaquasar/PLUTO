@@ -74,6 +74,9 @@ if __name__ == "__main__":
         if 'hello' in command:
             speak('Hello! I am PLUTO. How can I help you?')
 
+        elif "what can you do" in command:
+            speak("I can search things, play music, open websites, send email, search for your query, and many more....")
+
         elif 'who are you' in command:
             speak('I am your Virtual Assistant...')
 
@@ -123,7 +126,7 @@ if __name__ == "__main__":
             speak("I hope you like my assistance... Have a nice day!")
             break
 
-        else:
+        elif "repeat" in command or "speak" in command:
             speak(command)
 
 
