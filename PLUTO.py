@@ -16,7 +16,6 @@ def speak(audio):
     mixer.init()
     mixer.music.load("audio.mp3")
     mixer.music.play()
-    time.sleep(len(audio)//10)
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
@@ -29,7 +28,7 @@ def wishMe():
     else:
         speak("Good Evening!")  
 
-    speak("I am PLUTO. Please tell me how may I help you?")       
+    speak("I am PLUTO. Please tell me how may I help you")       
 
 
 def takeCommand(): 
@@ -38,7 +37,6 @@ def takeCommand():
     with sr.Microphone() as source:
         print("Listening...")
         r.pause_threshold = 1
-        r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
 
     try:
@@ -52,7 +50,6 @@ def takeCommand():
         command = takeCommand()
 
     return command
-
 
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -73,9 +70,11 @@ if __name__ == "__main__":
 
         if 'hello' in command:
             speak('Hello! I am PLUTO. How can I help you?')
+            time.sleep(3)
 
         elif 'who are you' in command:
             speak('I am your Virtual Assistant...')
+            time.sleep(3)
 
         elif 'wikipedia' in command:
             speak('Searching Wikipedia...')
@@ -101,7 +100,7 @@ if __name__ == "__main__":
             music_dir = '/home/reeha/Music'
             songs = os.listdir(music_dir)
             print(songs)    
-            os.path.join(music_dir, songs[0])
+            os.startfile(os.path.join(music_dir, songs[0]))
 
         elif 'the time' in command:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
@@ -120,10 +119,7 @@ if __name__ == "__main__":
                 speak("error while sending email...")
         
         elif 'bye' in command or 'quit' in command:
-            speak("I hope you like my assistance... Have a nice day!")
             break
 
         else:
             speak(command)
-
-
